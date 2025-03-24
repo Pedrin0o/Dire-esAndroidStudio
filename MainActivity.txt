@@ -1,0 +1,75 @@
+package com.example.projetopesquisa;
+
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText editTextNome;
+    private RadioButton radioButtonMasculino;
+    private RadioButton radioButtonFeminino;
+    private Spinner spinnerRegiao;
+    private TextView textViewResultado;
+    private Button buttonMostrar;
+
+    @SuppressLint("MissingInflatedId")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        editTextNome = findViewById(R.id.editTextNome);
+        radioButtonMasculino = findViewById(R.id.radioButtonMasculino);
+        radioButtonFeminino = findViewById(R.id.radioButtonFeminino);
+        spinnerRegiao = findViewById(R.id.spinnerRegiao);
+        textViewResultado = findViewById(R.id.textViewResultado);
+        buttonMostrar = findViewById(R.id.button);
+
+        buttonMostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nome = editTextNome.getText().toString();
+
+                // verifica o sexo
+                String sexo = "";
+                if (radioButtonMasculino.isChecked()) {
+                    sexo = "Masculino";
+                } else if (radioButtonFeminino.isChecked()) {
+                    sexo = "Feminino";
+                }
+
+                // verifica regiao
+                String regiao = spinnerRegiao.getSelectedItem().toString();
+
+                // Verifica respostas
+                if (nome.isEmpty() || sexo.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show();
+                } else {
+                    // mostra os bagui
+                    String resultado = "Nome: " + nome + "\nSexo: " + sexo + "\nRegião: " + regiao;
+                    textViewResultado.setText(resultado);
+                }
+            }
+        });
+    }
+}

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ProjetoPesquisa</string>
+    <string name="botao_mostrar">MOSTRAR</string>
+
+    <string-array name="regiao">
+        <item>Nordeste</item>
+        <item>Sudeste</item>
+        <item>Centro-Oeste</item>
+        <item>Sul</item>
+        <item>Norte</item>
+    </string-array>
+</resources>

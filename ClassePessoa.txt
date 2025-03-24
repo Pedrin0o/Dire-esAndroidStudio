@@ -1,0 +1,28 @@
+ buttonMostrar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String nome = editTextNome.getText().toString();
+
+                
+                String sexo = "";
+                if (radioButtonMasculino.isChecked()) {
+                    sexo = "Masculino";
+                } else if (radioButtonFeminino.isChecked()) {
+                    sexo = "Feminino";
+                }
+
+              
+                String regiao = spinnerRegiao.getSelectedItem().toString();
+
+               
+                if (nome.isEmpty() || sexo.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Por favor, preencha todos os campos.", Toast.LENGTH_SHORT).show();
+                } else {
+                   
+                    String resultado = "Nome: " + nome + "\nSexo: " + sexo + "\nRegião: " + regiao;
+                    textViewResultado.setText(resultado);
+                }
+            }
+        });
+    }
+}
